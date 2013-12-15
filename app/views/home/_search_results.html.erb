@@ -1,0 +1,11 @@
+<h1> Search Results </h1>
+  <% @movies.each do |mv| %>
+   <div class="movie_listing">
+	<div class="movie_poster"> <%= image_tag(mv.poster, width: '132', alt: "movie_poster") %> </div>
+	<p> <strong> Movie Title: </strong> <%= mv.title %> </p>
+        <p> <strong> Year: </strong> <%= mv.year %> </p>
+	<p> <strong> MPAA Rating: </strong> <%= mv.mpaa_rating %> </p>
+	<p> <strong> Starring: </strong> <%= mv.abridged_cast %>
+	<p> <strong> Synopsis: </strong> <%= mv.synopsis %> </p>
+   </div>	
+  <% end %>
