@@ -1011,18 +1011,31 @@
 
 @import 'foundation';
 
-#index_page_frame {
-	margin-left: 100px;
-	margin-right: 100px;
+.row {
+	margin-left: 60px;
+	margin-right: 160px;
+	max-width: 1400px;
 }
 
 .movie_listing {
 	float: left;
 	width: 287px;
+	border-style:solid;
+	border-width:1px;
+	background-color:grey;
 }
 
 .movie_listing p {
 	padding: 0px;
 	margin: 0px;
 	line-height: 24px;
+}
+
+.movie_poster img {
+	display: block;
+	margin: auto;
+}
+
+.tiles {
+	position: relative;
 }

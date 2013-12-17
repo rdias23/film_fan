@@ -1,0 +1,10 @@
+<% @counter = 1 %>
+
+
+
+<% @movies_top_ten.each do |mvtt| %>
+
+	<p> <%= @counter %>. <%= mvtt.title %> </p>
+	<% @counter = @counter + 1 %>
+
+<% end %>

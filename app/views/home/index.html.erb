@@ -1,4 +1,4 @@
-<div id="index_page_frame">
+
 <section class="top-bar-section">
 
     <% if @auth.present?  %>
@@ -7,26 +7,26 @@
 
 </section>
 
-<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+<div class="row">
+	<div class="large-8 columns">
 
-	<div class="movie_search">
-	
-	<fieldset>
-	  <legend> Search for a Movie! </legend>
-	  <%= form_for(:searchterm, remote: true, url: {action: "new_search"}, html: {class: "nifty form"}) do |f| %>
-	  <%= hidden_field_tag(:user_id, @user.id) %>
-	  <%= f.label :term, "What movie do you want to search for?" %>
-	  <%= f.text_field :term %>
-	  <%= f.submit @button_label, :class => 'radius button hidden tiny secondary', :id => 'search_button', :remote => "true" %>
-	  <% end %>
-	</fieldset>
-	
+	<div id="search_for_stuff">
+		<%= render(:partial => 'home/search_for_stuff') %>	
 	</div>
+
 	
 	<div id="search_results">
-	<%= render(:partial => 'home/search_results') %>
-	</div>	
+		<%= render(:partial => 'home/search_results') %>
+	</div>
+	</div>
+	
 
+	<div class="large-4 columns">
+		<div id="top_ten">
+			<%= render(:partial => 'home/top_ten') %>	
+		</div>
+	</div>
+</div>
 
 <div id="myModal" class="reveal-modal">
   <h2>Awesome. I have it.</h2>
@@ -34,3 +34,4 @@
   <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
   <a class="close-reveal-modal">&#215;</a>
 </div>
+

@@ -1,0 +1,15 @@
+<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+
+        <div class="movie_search">
+
+        <fieldset>
+          <legend> Search for a Movie! </legend>
+          <%= form_for(:searchterm, remote: true, url: {action: "new_search"}, html: {class: "nifty form"}) do |f| %>
+          <%= hidden_field_tag(:user_id, @user.id) %>
+          <%= f.label :term, "What movie do you want to search for?" %>
+          <%= f.text_field :term %>
+          <%= f.submit @button_label, :class => 'radius button hidden tiny secondary', :id => 'search_button', :remote => "true" %>
+          <% end %>
+        </fieldset>
+
+</div>

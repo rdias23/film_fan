@@ -1,1 +1,30 @@
 $( "#search_results" ).html( "<%= escape_javascript( render( :partial => "home/search_results")) %>" );
+
+$(document).ready(function() {
+   var options = {
+      autoResize: true, // This will auto-update the layout when the browser window is resized.
+      container: $('.tiles'), // Optional, used for some extra CSS styling
+      offset: 10, // Optional, the distance between grid items
+      flexibleWidth: 210 // Optional, the maximum width of a grid item
+    };
+    var handler = $('.movie_listing');
+
+    handler.wookmark(options);
+
+    $(window).load(function() {
+    $('tiles').imagesLoaded(function() {
+        // Prepare layout options.
+        // Get a reference to your grid items.
+        // Call the layout function.
+        handler.wookmark(options);
+    });
+    });
+
+    $('tiles').imagesLoaded(function() {
+        setTimeout(function () {
+          	handler.wookmark(options);  
+     	}, 1000);
+    });
+    
+
+});

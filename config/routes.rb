@@ -58,4 +58,6 @@ FilmFan::Application.routes.draw do
 
   root :to => "home#landing"
   post 'new_search' => 'home#new_search'
+  get 'update_movie' => 'home#update_movie'
+  patch 'update_movie' => 'home#update_movie'
 end

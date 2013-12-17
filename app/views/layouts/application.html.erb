@@ -23,9 +23,13 @@
   <body>
 
 	<div id="nav"><%= render :partial => 'layouts/new_nav' %></div>
-    <%= yield %>
 
-    
+    <%= yield :head %>
+
+    <%= yield %>
     <%= javascript_include_tag "application" %>
+
+    <%= yield :body %>
+
   </body>
 </html>

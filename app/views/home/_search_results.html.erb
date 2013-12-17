@@ -1,7 +1,15 @@
-<h1> Search Results </h1>
+<div class="tiles">
+
+  <% @counter = 0 %>
   <% @movies.each do |mv| %>
-   <div class="movie_listing">
+   <div class="movie_listing" id="movie_listing_<%= mv.id %>">
 	<div class="movie_poster"> <%= image_tag(mv.poster, width: '132', alt: "movie_poster") %> </div>
+		<%= form_for(@movies[@counter], remote:true, url: {action: "update_movie"}, html: {class: "nifty form"}) do |t| %>
+		  <%= hidden_field_tag(:user_id, @user.id) %>
+		  <%= hidden_field_tag(:id, mv.id) %>
+   		  <%= t.submit %>
+   		<% end %>
+	<% @counter = @counter + 1 %>
 	<p> <strong> Movie Title: </strong> <%= mv.title %> </p>
         <p> <strong> Year: </strong> <%= mv.year %> </p>
 	<p> <strong> MPAA Rating: </strong> <%= mv.mpaa_rating %> </p>
@@ -9,3 +17,5 @@
 	<p> <strong> Synopsis: </strong> <%= mv.synopsis %> </p>
    </div>	
   <% end %>
+</div>
+
