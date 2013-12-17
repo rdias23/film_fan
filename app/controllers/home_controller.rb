@@ -85,7 +85,7 @@ class HomeController < ApplicationController
     @movies = Movie.all.where(:user_id => @user.id).where(:user_id => @user.id).where(:top_ten => false)	
 
     respond_to do |format|
-      	format.js {render :layout => false}
+      	format.js 
     end 
   end
 

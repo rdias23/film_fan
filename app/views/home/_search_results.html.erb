@@ -1,3 +1,20 @@
+<% @movies.each do |mv| %>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+var mv_id = "<%=j mv.id.to_s %>";
+
+$('#edit_movie_' + mv_id ).click(function() {
+	$(this).addClass("hide");	
+})
+
+
+})
+</script>
+
+<% end %>
+
 <div class="tiles">
 
   <% @counter = 0 %>
