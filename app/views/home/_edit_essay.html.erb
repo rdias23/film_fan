@@ -1,0 +1,27 @@
+
+
+<% if flash[:notice] == "That movie has been deleted!" %>
+	<p> <%= flash[:notice] %></p>
+<% else %>
+<p> Editing essay for 	<span class="edit_movie_title"> <%= @movie.title %></span>  </p>
+<% end %>
+
+
+<% unless flash[:notice] == "That movie has been deleted!" %>
+
+<%= form_for(@essay, remote:true, url: {action: "edit_essay"}, html: {class: "nifty form"}) do |f| %>
+	<%= hidden_field_tag(:user_id, @user.id) %>
+	<%= hidden_field_tag(:movie_id, @essay.movie.id) %>
+	<%= hidden_field_tag(:id, @essay.id) %>
+  Title: <%= f.text_field :title %>
+  <%= f.submit(:class => "radius button hidden tiny secondary") %></br>
+  <p> <%= flash[:notice] %></p>
+  Body : <%= f.text_area(:body, :id => "body_area", :cols => 10, :rows => 90) %>
+  <%= f.submit(:class => "radius button hidden tiny secondary") %>
+
+<% end %>
+
+
+  <p> <%= flash[:notice] %></p>
+
+<% end %>

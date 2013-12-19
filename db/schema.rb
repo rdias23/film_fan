@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214230106) do
+ActiveRecord::Schema.define(version: 20131217230602) do
+
+  create_table "essays", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "movie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "essays", ["movie_id"], name: "index_essays_on_movie_id"
 
   create_table "movies", force: true do |t|
     t.string   "title"
@@ -25,6 +35,7 @@ ActiveRecord::Schema.define(version: 20131214230106) do
     t.boolean  "top_ten"
     t.integer  "rank"
     t.string   "poster"
+    t.string   "link"
   end
 
   add_index "movies", ["user_id"], name: "index_movies_on_user_id"

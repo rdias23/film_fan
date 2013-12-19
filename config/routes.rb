@@ -60,4 +60,9 @@ FilmFan::Application.routes.draw do
   post 'new_search' => 'home#new_search'
   get 'update_movie' => 'home#update_movie'
   patch 'update_movie' => 'home#update_movie'
+
+  get 'edit_essay' => 'home#edit_essay'
+  patch 'edit_essay' => 'home#edit_essay'
+
+  delete 'delete_movie' => 'home#delete_movie'
 end

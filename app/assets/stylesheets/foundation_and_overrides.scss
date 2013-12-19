@@ -1039,3 +1039,14 @@
 .tiles {
 	position: relative;
 }
+
+form[id*='edit_movie_'] {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+form[id*='edit_movie_'] input {
+	margin-bottom: 0px;
+}
+
+textarea { height: auto; }
