@@ -1011,10 +1011,20 @@
 
 @import 'foundation';
 
+body {
+	background-color: grey;
+}
+
 .row {
 	margin-left: 60px;
 	margin-right: 160px;
 	max-width: 1400px;
+	background-color: black;
+	border-radius: 10px;
+}
+
+div.large-4.columns {
+	padding: 0px;
 }
 
 .movie_listing {
@@ -1050,3 +1060,76 @@ form[id*='edit_movie_'] input {
 }
 
 textarea { height: auto; }
+
+.red { color: red; }
+
+p.movie_and_essay_titles {
+	margin-bottom: 0px;
+}
+
+span.movie_top_ten_essay_title {
+	font-style: italic;
+}
+div.movie_top_ten_main_info_box p {
+	line-height: 16px;
+}
+
+div.arrow_down, div.arrow_up {
+	max-width: 75px;
+	margin: 0;
+}
+
+span.arrow_down_link_to_text, span.arrow_up_link_to_text {
+	font-size: .5em;
+	display: block;
+	padding-top: 6px;
+	float: right;
+}
+
+.movie_top_ten_edit_essay_form {
+	max-width: 76px;
+	float: left;
+	margin-bottom: 0px;
+}
+
+div.movie_top_ten_main_info_box {
+	max-width: 84%;
+	margin-bottom:0px;
+}
+
+div.movie_top_ten_picture_box {
+	max-width: 16%;
+	float: right;
+	margin-bottom:0px;
+}
+
+div.movie_top_ten_picture_box img {
+	padding: 0px;
+}
+
+div.movie_top_ten_picture_box img {
+}
+
+div.movie_top_ten_total_info_box {
+	background-color: white;
+	border-style:solid;
+	border-width:2px;
+	border-top-width:1px;
+	border-bottom-width:1px;
+	border-color:#010101;
+	overflow-y:hidden;
+	margin-bottom: 0px;
+}
+
+.button_to, input.button.tiny.radius.alert, input.radius.button.hidden.tiny.success {
+	margin-bottom: 0px;
+}
+
+div.movie_listing {
+	background-color: white;
+}
+
+div.movie_search, div.movie_search fieldset {
+	background-color: white;
+	border-radius: 10px;
+}

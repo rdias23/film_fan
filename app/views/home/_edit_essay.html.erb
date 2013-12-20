@@ -1,5 +1,7 @@
 
 
+<div id="edit_essay_container">
+
 <% if flash[:notice] == "That movie has been deleted!" %>
 	<p> <%= flash[:notice] %></p>
 <% else %>
@@ -15,13 +17,21 @@
 	<%= hidden_field_tag(:id, @essay.id) %>
   Title: <%= f.text_field :title %>
   <%= f.submit(:class => "radius button hidden tiny secondary") %></br>
-  <p> <%= flash[:notice] %></p>
+  
+  <% unless flash[:notice] == "" %> 
+    <span class="red"><%= flash[:notice] %></span></br>
+  <% end %>  
+
   Body : <%= f.text_area(:body, :id => "body_area", :cols => 10, :rows => 90) %>
+ 
+  <% unless flash[:notice] == "" %>                          
+    <span class="red"><%= flash[:notice] %></span></br>
+  <% end %>
+ 
   <%= f.submit(:class => "radius button hidden tiny secondary") %>
 
 <% end %>
 
-
-  <p> <%= flash[:notice] %></p>
-
 <% end %>
+
+</div>

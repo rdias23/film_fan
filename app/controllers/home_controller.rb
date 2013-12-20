@@ -16,6 +16,7 @@ class HomeController < ApplicationController
 	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
 
 	@movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
+	@movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
 
         @movies.each do |mv|
                 mv.destroy
@@ -201,6 +202,9 @@ class HomeController < ApplicationController
      else
 		flash[:notice] = "That movie has been deleted!"
      end
+
+     @movies_top_ten =  Movie.all.where(:user_id => @user.id).where(:top_ten => true)
+     @movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
 
     respond_to do |format|
         format.js {render :layout => false}

@@ -3,29 +3,40 @@
 
 <% @movies_top_ten.each do |mvtt| %>
 
-	<p> <%= @counter %>. <%= mvtt.title %> </p>
+<div class="movie_top_ten_total_info_box">
 
-	<%= form_for(@movies_top_ten[@counter2].essay, remote:true, url: {action: "edit_essay"}, html: {class: "nifty form"}) do |t| %>
-		<%= hidden_field_tag(:user_id, @user.id) %>
-		<%= hidden_field_tag(:movie_id, mvtt.id) %>
-		<%= hidden_field_tag(:id, mvtt.essay.id) %>
-		<%= t.submit "Edit Essay" %>
-	<% end %>
+	<div class="movie_top_ten_picture_box"> <%= image_tag(mvtt.poster, alt: "movie_poster", size: "50x78") %> </div> 
 
-	<%= button_to "Delete Movie", { action: "delete_movie", id: @movies_top_ten[@counter2].id },
-                                method: :delete, :remote => true, data: { confirm: "Delete this movie and associated essay from favorites!?!? Are you sure?" } %>
-
+<div class="movie_top_ten_main_info_box">	
+	<p class="movie_and_essay_titles"> 
+	<%= @counter %>. <strong> Movie Title: </strong> <%= link_to mvtt.title, mvtt.link, :target => "_blank" %></br>
+	<strong> Essay Title: </strong> <span class="movie_top_ten_essay_title"> <%= mvtt.essay.title %> </span>
+	</p>
+	
 	<% unless @movies_top_ten.first.rank == mvtt.rank %>
-	        <%= button_to "Move Up", { action: "update_movie", id: @movies_top_ten[@counter2].id, move_up: "yes" },
-				method: :patch, :remote => true %>
+
+		<div class="arrow_up"> <span class="arrow_up_link_to"><%= link_to image_tag("/arrow-up.png", :width => '20px', :class => 'picture'), {:controller => 'home', :action => "update_movie", id: @movies_top_ten[@counter2].id, move_up: "yes" }, method: :patch, :remote => true %> </span> <span class="arrow_down_link_to_text"> Move Up! &nbsp &nbsp </span> </div>
 	<% end %>
 
 	<% unless @movies_top_ten.last.rank == mvtt.rank %>
-	        <%= button_to "Move Down", { action: "update_movie", id: @movies_top_ten[@counter2].id, move_down: "yes" },
-                                method: :patch, :remote => true %>
+		<div class="arrow_down"> <span class="arrow_down_link_to"><%= link_to image_tag("/arrow-down.png", :width => '20px', :class => 'picture'), {:controller => 'home', :action => "update_movie", id: @movies_top_ten[@counter2].id, move_down: "yes" }, method: :patch, :remote => true %> </span> <span class="arrow_down_link_to_text"> Move Down! </span> </div>
 	<% end %>
+
+        <%= form_for(@movies_top_ten[@counter2].essay, remote:true, url: {action: "edit_essay"}, html: {class: "nifty form movie_top_ten_edit_essay_form"}) do |t| %>
+                <%= hidden_field_tag(:user_id, @user.id) %>
+                <%= hidden_field_tag(:movie_id, mvtt.id) %>
+                <%= hidden_field_tag(:id, mvtt.essay.id) %>
+                <%= t.submit "Edit Essay", :class => 'radius button hidden tiny success' %>
+        <% end %>
+
+        <%= button_to "Delete Movie", { action: "delete_movie", id: @movies_top_ten[@counter2].id },
+                                method: :delete, :remote => true, data: { confirm: "Delete this movie and associated essay from favorites!?!? Are you sure?" }, class: "button tiny radius alert" %>
 
 	<% @counter = @counter + 1 %>
 	<% @counter2 = @counter2 + 1 %>
+
+</div> <!-- end div class movie_top_ten_main_info_box -->
+
+</div>
 
 <% end %>
