@@ -1129,7 +1129,39 @@ div.movie_listing {
 	background-color: white;
 }
 
+div.user_list {
+	background-color: white;
+}
+
+div.first_user_list {
+	background-color:rgb(0,0,200);
+	color: red;
+}
+
+div.user_list p {
+	margin-bottom: 0px;
+	line-height: 14px;
+}
+
 div.movie_search, div.movie_search fieldset {
 	background-color: white;
 	border-radius: 10px;
+}
+
+span.edit_form_white_text {
+	color: white;
+}
+
+p.search_results_movie_title, span.already_faved_ten {
+	line-height: 14px;
+}
+
+.movie_search fieldset {
+	margin-bottom: 0px;
+}
+
+input#show_user_list_button {
+        width: 100%;
+        color: red;
+	margin-bottom: 0px;
 }

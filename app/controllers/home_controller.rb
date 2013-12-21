@@ -12,19 +12,18 @@ class HomeController < ApplicationController
   def index
 	@user = current_user
 	@button_label = "Search!"
-
-	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
+	@button_label2 = "Show User Lists"
 
 	@movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
 	@movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
 
-        @movies.each do |mv|
+       	@movies = Movie.all.where(:top_ten => false) 
+	@movies.each do |mv|
                 mv.destroy
 		mv.save
         end
 
 	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
-
 
     respond_to do |format|
 	format.html
@@ -100,7 +99,8 @@ class HomeController < ApplicationController
 
     if(params.has_key?(:move_up))
         @movie = Movie.find(params[:id])
-        @movieabove = (Movie.where(:rank => (@movie.rank - 1)))[0]
+	@user = User.find(@movie.user.id)
+        @movieabove = (Movie.all.where(:user_id => @user.id).where(:top_ten => true).where(:rank => (@movie.rank - 1)))[0]
 
         @movieabove.rank = @movie.rank
         @movie.rank = @movie.rank - 1
@@ -108,16 +108,13 @@ class HomeController < ApplicationController
         @movie.save
         @movieabove.save
 
- 
-	@user = User.find(@movie.user.id)	
-
         @movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
         @movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
-	@movies = Movie.all.where(:top_ten => false)
-
+	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
     elsif(params.has_key?(:move_down))
 	@movie = Movie.find(params[:id])
-        @moviebelow = (Movie.where(:rank => (@movie.rank + 1)))[0]
+	@user = User.find(@movie.user.id)
+        @moviebelow = (Movie.all.where(:user_id => @user.id).where(:top_ten => true).where(:rank => (@movie.rank + 1)))[0]
  
         @moviebelow.rank = @movie.rank
         @movie.rank = @movie.rank + 1
@@ -125,22 +122,19 @@ class HomeController < ApplicationController
         @movie.save
         @moviebelow.save
 
-        @user = User.find(@movie.user.id)
-
         @movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
         @movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
-	@movies = Movie.all.where(:top_ten => false)
+   	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
     else	
 	@movie = Movie.find(params[:id])
 	@movie.top_ten = true
-	@movie.rank = Movie.all.where(:top_ten => true).length + 1
-	@movie.save
-
 	@user = User.find(params[:user_id])
+	@movie.rank = Movie.all.where(:user_id => @user.id).where(:top_ten => true).length + 1
+	@movie.save
 
 	@movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
 	@movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
-	@movies = Movie.all.where(:top_ten => false)
+	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
     end
 
     respond_to do |format|
@@ -154,9 +148,8 @@ class HomeController < ApplicationController
 	@movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
 	@movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
 
-
 	unless(@movie.rank == @movies_top_ten.length)
-		@moviebelow = (Movie.where(:rank => (@movie.rank + 1)))[0]
+		@moviebelow = (Movie.all.where(:user_id => @user.id).where(:top_ten => true).where(:rank => (@movie.rank + 1)))[0]
 
 		@movies_top_ten_sub_array = @movies_top_ten[(@moviebelow.rank - 1)..(@movies_top_ten.length - 1)]
 
@@ -194,21 +187,39 @@ class HomeController < ApplicationController
 		flash[:notice] = ""
 	end
 
-	@movies = Movie.all.where(:top_ten => false)
+	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
 	@movies.each do |mv|
 		mv.destroy
 		mv.save
 	end
+
+        @movies_top_ten =  Movie.all.where(:user_id => @user.id).where(:top_ten => true)
+        @movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
      else
 		flash[:notice] = "That movie has been deleted!"
+	@user = User.find(params[:user_id])
+	@movies_top_ten =  Movie.all.where(:user_id => @user.id).where(:top_ten => true)
+        @movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
      end
-
-     @movies_top_ten =  Movie.all.where(:user_id => @user.id).where(:top_ten => true)
-     @movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
 
     respond_to do |format|
         format.js {render :layout => false}
     end    
+  end
+  
+  def show_user_lists
+  	@user = User.find(params[:id])
+	@users = User.all 
+
+        @movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false)
+	@movies.each do |mv|
+                mv.destroy
+                mv.save
+        end
+	
+    respond_to do |format|
+        format.js {render :layout => false}
+    end 	
   end
 
   private

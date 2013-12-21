@@ -65,4 +65,8 @@ FilmFan::Application.routes.draw do
   patch 'edit_essay' => 'home#edit_essay'
 
   delete 'delete_movie' => 'home#delete_movie'
+  get 'delete_movie' => 'home#delete_movie'
+
+  post 'show_user_lists' => 'home#show_user_lists'
+  get 'show_user_lists' => 'home#show_user_lists'	
 end

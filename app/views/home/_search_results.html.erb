@@ -9,7 +9,6 @@ $('#edit_movie_' + mv_id ).click(function() {
 	$(this).addClass("hide");	
 })
 
-
 })
 </script>
 
@@ -20,7 +19,6 @@ $('#edit_movie_' + mv_id ).click(function() {
   <% @counter = 0 %>
   <% @movies.each do |mv| %>
    <div class="movie_listing" id="movie_listing_<%= mv.id %>">
-	
 
 	<div class="movie_poster"> <%= image_tag(mv.poster, width: '132', alt: "movie_poster") %> </div>
 
@@ -31,13 +29,12 @@ $('#edit_movie_' + mv_id ).click(function() {
    		  <%= t.submit "Add to Faves", :class => 'button small radius alert' %>
    		<% end %>
 	<% else %>
-	<span> You've already faved 10 movies! Delete one before adding another! </span>
+	<span class="red already_faved_ten"> You've already faved 10 movies! Delete one before adding another! </span>
 	<% end %>
-
 
 	<% @counter = @counter + 1 %>
 
-	<p> <strong> Movie Title: </strong> 
+	<p class="search_results_movie_title"> <strong> Movie Title: </strong> 
 
 		<%= link_to mv.title, mv.link, :target => "_blank" %> 
 

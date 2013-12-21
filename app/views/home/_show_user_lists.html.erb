@@ -1,0 +1,51 @@
+
+<div class="tiles">
+	
+	<% @users.each do |us| %>
+		<% if us.id == @user.id %>
+
+		   <div class="user_list first_user_list" id="user_list_<%= us.id %>">
+
+			<p> <strong> Your Essays! </strong> </p>
+			<% @counter = 1 %>
+			<% us.movies.each do |mv| %>
+				<p> <%= @counter %>. Movie: <%= link_to mv.title, mv.link, :target => "_blank" %> </p>
+
+			<% if mv.essay.title != nil %>
+				<p> Essay: <%= link_to mv.essay.title, 'javascript:;', "data-reveal-id" => "myModal" + mv.essay.id.to_s %> </p>
+			<% else %>
+				<p> Essay: </p>
+			<% end %>
+
+			<% @counter = @counter + 1 %>
+			<% end %>
+		   </div>
+		<% else %>
+		    <div class="user_list" id="user_list_<%= us.id %>">
+			<p> <strong> <%= us.first_name %> <%= us.last_name %>'s Essays </strong> </p>
+			<% @counter2 = 1 %>
+    			<% us.movies.each do |mv| %>
+                                <p> <%= @counter2 %>. Movie: <%= mv.title %> </p>
+			<% if mv.essay.title != nil %>
+                     	        <p> Essay: <%= link_to mv.essay.title, 'javascript:;', "data-reveal-id" => "myModal" + mv.essay.id.to_s %> </p> 
+                       <% else %>
+                               <p> Essay: </p>
+                       <% end %>	
+				<% @counter2 = @counter2 + 1 %>
+                        <% end %>
+		    </div>
+		<% end %>
+	<% end %>	
+</div>
+
+<div id="user_list_modals">
+
+<% @users.each do |us| %>
+	<% us.movies.each do |mv| %>	
+	<div id="myModal<%= mv.essay.id%>" class="reveal-modal">
+		<p>Essay Title: <%= mv.essay.title %> </p>
+		<%= mv.essay.body %>
+	</div>
+	<% end %>
+<% end %>
+</div>
