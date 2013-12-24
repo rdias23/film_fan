@@ -11,6 +11,7 @@ class HomeController < ApplicationController
  
   def index
 	@user = current_user
+	@users = User.all
 	@button_label = "Search!"
 	@button_label2 = "Show User Lists"
 

@@ -1,6 +1,7 @@
 $( "#top_ten" ).html( "<%= escape_javascript( render( :partial => "top_ten" )) %>" );
 
 <% if (@movies_top_ten.length >= 10) %>
+    <% unless @movies.length == 0 %>
 	$( "#search_results" ).html( "<%= escape_javascript( render( :partial => "search_results")) %>" );
 
 	$(document).ready(function() {
@@ -29,7 +30,6 @@ $( "#top_ten" ).html( "<%= escape_javascript( render( :partial => "top_ten" )) %
 	            }, 1000);
 	        });
 	    
-	    
 	    });
-
+    <% end %>
 <% end %>

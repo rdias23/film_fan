@@ -1131,16 +1131,25 @@ div.movie_listing {
 
 div.user_list {
 	background-color: white;
+	span.essay_title {
+		font-style: italic;	
+	}	
+}
+
+div#user_list_modals span.essay_title2 {
+	font-size: 23px;
+	font-style: italic;
 }
 
 div.first_user_list {
-	background-color:rgb(0,0,200);
-	color: red;
+	border-style:solid;
+	border-color:red;
+	border-width:2px;
 }
 
 div.user_list p {
 	margin-bottom: 0px;
-	line-height: 14px;
+	line-height: 18px;
 }
 
 div.movie_search, div.movie_search fieldset {
@@ -1164,4 +1173,8 @@ input#show_user_list_button {
         width: 100%;
         color: red;
 	margin-bottom: 0px;
+}
+
+#user_list_modals textarea {
+	height: 660px;
 }

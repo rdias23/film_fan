@@ -6,13 +6,13 @@
 
 		   <div class="user_list first_user_list" id="user_list_<%= us.id %>">
 
-			<p> <strong> Your Essays! </strong> </p>
+			<p class="red"> <strong> Your Essays! </strong> </p>
 			<% @counter = 1 %>
 			<% us.movies.each do |mv| %>
 				<p> <%= @counter %>. Movie: <%= link_to mv.title, mv.link, :target => "_blank" %> </p>
 
 			<% if mv.essay.title != nil %>
-				<p> Essay: <%= link_to mv.essay.title, 'javascript:;', "data-reveal-id" => "myModal" + mv.essay.id.to_s %> </p>
+				<p> Essay: <span class="essay_title"><%= link_to mv.essay.title, 'javascript:;', "data-reveal-id" => "myModal" + mv.essay.id.to_s %> </span></p>
 			<% else %>
 				<p> Essay: </p>
 			<% end %>
@@ -22,12 +22,12 @@
 		   </div>
 		<% else %>
 		    <div class="user_list" id="user_list_<%= us.id %>">
-			<p> <strong> <%= us.first_name %> <%= us.last_name %>'s Essays </strong> </p>
+			<p class="red"> <strong> <%= us.first_name %> <%= us.last_name %>'s Essays </strong> </p>
 			<% @counter2 = 1 %>
     			<% us.movies.each do |mv| %>
-                                <p> <%= @counter2 %>. Movie: <%= mv.title %> </p>
+                                <p> <%= @counter2 %>. Movie: <%= link_to mv.title, mv.link, :target => "_blank" %> </p>
 			<% if mv.essay.title != nil %>
-                     	        <p> Essay: <%= link_to mv.essay.title, 'javascript:;', "data-reveal-id" => "myModal" + mv.essay.id.to_s %> </p> 
+                     	        <p> Essay: <span class="essay_title"> <%= link_to mv.essay.title, 'javascript:;', "data-reveal-id" => "myModal" + mv.essay.id.to_s %> </span></p> 
                        <% else %>
                                <p> Essay: </p>
                        <% end %>	
@@ -43,8 +43,9 @@
 <% @users.each do |us| %>
 	<% us.movies.each do |mv| %>	
 	<div id="myModal<%= mv.essay.id%>" class="reveal-modal">
-		<p>Essay Title: <%= mv.essay.title %> </p>
-		<%= mv.essay.body %>
+		Movie: <%= mv.title %> 
+		<p><span class="essay_title2"><%= mv.essay.title %> </span></p>
+		<textarea readonly><%= mv.essay.body %> </textarea>
 	</div>
 	<% end %>
 <% end %>
