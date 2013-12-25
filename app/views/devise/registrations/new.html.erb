@@ -1,3 +1,6 @@
+
+<div id="registrations_container">
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
@@ -21,4 +24,22 @@
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
+
+</div>
+
+<script>
+	function set_page() {
+		if(!(window.location.href == 'http://localhost:3000/' || window.location.href == 'http://localhost:3000/users/password/new' || window.location.href == 'http://localhost:3000/home/index'))
+
+		{			
+			(window.location.href = '/');
+
+		}	
+	}
+	
+
+set_page();
+
+
+</script>

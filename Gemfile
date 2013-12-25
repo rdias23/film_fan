@@ -49,3 +49,7 @@ gem 'devise'
 gem "rest-client", "~> 1.6.7"
 
 gem 'zurb-foundation', '~> 4.0.0'
+
+group :assets do
+  gem "chardinjs-rails"
+end

@@ -1019,6 +1019,7 @@ body {
 	margin-left: 60px;
 	margin-right: 160px;
 	max-width: 1400px;
+	min-height: 820px;
 	background-color: black;
 	border-radius: 10px;
 }
@@ -1177,4 +1178,10 @@ input#show_user_list_button {
 
 #user_list_modals textarea {
 	height: 660px;
+}
+
+#alert_bigger {
+                position: relative;
+                color: red;
+                text-align: center;
 }

@@ -1,2 +1,15 @@
-<h1>Home#landing</h1>
-<p>Find me in app/views/home/landing.html.erb</p>
+<% content_for :head do %>
+	<h1 id="alert_bigger">
+	<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+	<%= content_tag(:div, flash[:error], :id => "flash_notice") if flash[:error] %>
+	<%= content_tag(:div, flash[:alert], :id => "flash_notice") if flash[:alert] %>
+	</h1>
+<% end %>
+
+<% content_for :body do %>
+<script type="text/javascript">
+	$.backstretch("assets/Film_Fan_Favorites.png");
+</script>
+
+<% end %>
+

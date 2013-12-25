@@ -97,7 +97,6 @@ class HomeController < ApplicationController
   end
 
   def update_movie
-
     if(params.has_key?(:move_up))
         @movie = Movie.find(params[:id])
 	@user = User.find(@movie.user.id)
