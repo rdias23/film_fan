@@ -88,6 +88,7 @@ class HomeController < ApplicationController
 	end
 
         @movies = Movie.all.where(:user_id => @user.id).where(:user_id => @user.id).where(:top_ten => false)
+	@movies.sort! { |a,b| a.created_at <=> b.created_at }
         @movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
         @movies_top_ten.sort! { |a,b| a.rank <=> b.rank }	
 
