@@ -24,7 +24,7 @@
 		    <div class="user_list" id="user_list_<%= us.id %>">
 			<p class="red"> <strong> <%= us.first_name %> <%= us.last_name %>'s Essays </strong> </p>
 			<% @counter2 = 1 %>
-    			<% us.movies.order('rank ASC').each do |mv| %>
+    			<% us.movies.order('rank ASC').where(:top_ten => true).order('rank ASC').each do |mv| %>
                                 <p> <%= @counter2 %>. Movie: <%= link_to mv.title, mv.link, :target => "_blank" %> </p>
 			<% if mv.essay.title != nil %>
                      	        <p> Essay: <span class="essay_title"> <%= link_to mv.essay.title, 'javascript:;', "data-reveal-id" => "myModal" + mv.essay.id.to_s %> </span></p> 
