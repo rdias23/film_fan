@@ -8,7 +8,7 @@
 
 			<p class="red"> <strong> Your Essays! </strong> </p>
 			<% @counter = 1 %>
-			<% us.movies.order('rank ASC').each do |mv| %>
+			<% us.movies.where(:top_ten => true).order('rank ASC').each do |mv| %>
 				<p> <%= @counter %>. Movie: <%= link_to mv.title, mv.link, :target => "_blank" %> </p>
 
 			<% if mv.essay.title != nil %>
