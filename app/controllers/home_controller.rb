@@ -18,7 +18,7 @@ class HomeController < ApplicationController
 	@movies_top_ten = Movie.all.where(:user_id => @user.id).where(:top_ten => true)
 	@movies_top_ten.sort! { |a,b| a.rank <=> b.rank }
 
-       	@movies = Movie.all.where(:top_ten => false) 
+       	@movies = Movie.all.where(:user_id => @user.id).where(:top_ten => false) 
 	@movies.each do |mv|
                 mv.destroy
 		mv.save

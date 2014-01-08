@@ -17,7 +17,7 @@ $('#edit_movie_' + mv_id ).click(function() {
 <div class="tiles">
 
   <% @counter = 0 %>
-  <% @movies.each do |mv| %>
+  <% @movies.order('rank ASC').each do |mv| %>
    <div class="movie_listing" id="movie_listing_<%= mv.id %>">
 
 	<div class="movie_poster"> <%= image_tag(mv.poster, width: '132', alt: "movie_poster") %> </div>
